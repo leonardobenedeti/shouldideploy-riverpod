@@ -7,19 +7,20 @@ environment:
   sdk: ">=3.1.1 <4.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.4.9
-  riverpod_annotation: ^2.3.3
-  cupertino_icons: ^1.0.2
+  get_it: ^7.6.7
   http: ^1.1.0
+  riverpod_annotation: ^2.3.3
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.0
   build_runner:
   custom_lint:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
   riverpod_generator: ^2.3.9
   riverpod_lint: ^2.3.7
 
