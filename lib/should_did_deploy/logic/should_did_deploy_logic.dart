@@ -9,9 +9,9 @@ part 'should_did_deploy_logic.g.dart';
 Future<ShouldDidDeployToday> shouldDidDeployToday(
   ShouldDidDeployTodayRef ref,
 ) async {
-  final repository = GetIt.I<ShouldDidDeployRepository>();
+  final _repository = GetIt.I<ShouldDidDeployRepository>();
 
-  final response = await repository.shouldDidDeployToday();
+  final response = await _repository.shouldDidDeployToday();
 
   return ShouldDidDeployToday.fromJson(response);
 }

@@ -7,7 +7,7 @@ part of 'should_did_deploy_logic.dart';
 // **************************************************************************
 
 String _$shouldDidDeployTodayHash() =>
-    r'362597d40057138bc983470d99453c13b7d2d9af';
+    r'e254584c8e5e882d1fa769675312c48a43990e7d';
 
 /// See also [shouldDidDeployToday].
 @ProviderFor(shouldDidDeployToday)

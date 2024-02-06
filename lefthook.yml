@@ -1,0 +1,14 @@
+pre-push:
+  parallel: true
+  commands:
+    tests:
+      run: flutter test
+    linter:
+      run: flutter analyze
+
+pre-commit:
+  commands:
+    linter:
+      run: flutter analyze
+    coverage:
+      run: sh scripts/check_coverage.sh

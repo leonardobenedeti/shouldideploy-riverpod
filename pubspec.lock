@@ -291,6 +291,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  full_coverage:
+    dependency: "direct dev"
+    description:
+      name: full_coverage
+      sha256: "2df796384bf6459bed72319c4676d473c270f71a71c3d73de33eddd52658a9b8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   get_it:
     dependency: "direct main"
     description:
@@ -419,6 +427,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  mocktail:
+    dependency: transitive
+    description:
+      name: mocktail
+      sha256: c4b5007d91ca4f67256e720cb1b6d704e79a510183a12fa551021f652577dce6
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
+  mocktailx:
+    dependency: "direct dev"
+    description:
+      name: mocktailx
+      sha256: "67599764c1fe7a702a34a8d7c471959ce6dbd5fe1b60e1b6ad6f412b0a76d799"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   package_config:
     dependency: transitive
     description:
