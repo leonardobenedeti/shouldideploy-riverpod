@@ -11,11 +11,12 @@ SF:lib/should_did_deploy/data/repository/shouldideploy_repository.dart
 DA:6,2
 DA:8,1
 DA:10,1
-DA:14,2
-DA:15,2
-DA:18,1
-LF:6
-LH:6
+DA:11,2
+DA:12,1
+DA:15,1
+DA:19,1
+LF:7
+LH:7
 end_of_record
 SF:lib/main_builder.dart
 DA:6,1
@@ -24,7 +25,7 @@ LF:2
 LH:2
 end_of_record
 SF:lib/should_did_deploy/ui/should_did_deploy_builder.dart
-DA:9,7
+DA:9,8
 DA:11,2
 DA:13,4
 DA:16,4
@@ -110,7 +111,7 @@ LF:27
 LH:27
 end_of_record
 SF:lib/should_did_deploy/ui/should_did_deploy_loading_page.dart
-DA:4,7
+DA:4,8
 DA:6,3
 LF:2
 LH:2

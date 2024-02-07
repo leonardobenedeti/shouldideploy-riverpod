@@ -9,7 +9,11 @@ class ShouldDidDeployRepository {
 
   Future<String> shouldDidDeployToday() async {
     final response = await httpClient!.get(
-      Uri.https('shouldideploy.today', '/api', {'tz': 'America/Sao_Paulo'}),
+      Uri.https(
+        'shouldideploy.today',
+        '/api',
+        {'tz': 'America/Sao_Paulo'},
+      ),
     );
 
     return response.body;
