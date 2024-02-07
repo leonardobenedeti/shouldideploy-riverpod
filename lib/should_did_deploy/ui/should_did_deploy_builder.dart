@@ -13,7 +13,7 @@ class ShouldDidDeployBuilder extends ConsumerWidget {
     final response = ref.watch(shouldDidDeployTodayProvider);
 
     return switch (response) {
-      AsyncData(:final value) => ShouldDidDeploySuccessPage(
+      AsyncData(:final value) => ShouldDidDeployLoadedPage(
           data: value,
           onTryAgain: () => ref.refresh(shouldDidDeployTodayProvider.future),
         ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:shouldideploy/should_did_deploy/data/model/mocked_responses.dart';
 import 'package:shouldideploy/should_did_deploy/data/model/should_did_deploy_model.dart';
 import 'package:shouldideploy/should_did_deploy/ui/should_did_deploy_loaded_page.dart';
 
-import '../../mocks/shouldiddeploy_api_mock.dart';
+import '../../flutter_test_config.dart';
 
 void main() {
   Future<void> createWidget(
@@ -12,7 +14,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: ShouldDidDeploySuccessPage(
+        home: ShouldDidDeployLoadedPage(
           data: ShouldDidDeployToday.fromJson(data),
           onTryAgain: () {},
         ),
@@ -20,11 +22,8 @@ void main() {
     );
   }
 
-  group('ShouldDidDeployLoadedPage tests', () {
-    testWidgets(
-        ' - Quando abrir a tela de sucesso com um retorno positivo, '
-        'é preciso mostrar a mensagem e a tela configurada em tons verdes ',
-        (tester) async {
+  group('[Widget] ShouldDidDeployLoadedPage - ', () {
+    testWidgets('You can deploy', (tester) async {
       await createWidget(tester, mockedSuccess);
       await tester.pump();
 
@@ -52,10 +51,7 @@ void main() {
       expect(scaffold.backgroundColor, Colors.lightGreen[200]);
     });
 
-    testWidgets(
-        ' - Quando abrir a tela de sucesso com um retorno negativo, '
-        'é preciso mostrar a mensagem e a tela configurada em tons vermelhos ',
-        (tester) async {
+    testWidgets('You can not deploy', (tester) async {
       await createWidget(tester, mockedError);
       await tester.pump();
 
@@ -80,6 +76,42 @@ void main() {
       final scaffoldFinder = find.byType(Scaffold);
       final scaffold = tester.widget<Scaffold>(scaffoldFinder);
       expect(scaffold.backgroundColor, Colors.red[300]);
+    });
+  });
+
+  group('[Golden] ShouldDidDeployLoadedPage - ', () {
+    testGoldens('You can deploy', (tester) async {
+      await loadAppFonts();
+      await tester.pumpWidgetBuilder(
+        ShouldDidDeployLoadedPage(
+          data: ShouldDidDeployToday.fromJson(mockedSuccess),
+          onTryAgain: () {},
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await multiScreenGolden(
+        tester,
+        'Loaded_Page-Can_deploy',
+        devices: projectDevices,
+      );
+    });
+
+    testGoldens('You can not deploy', (tester) async {
+      await loadAppFonts();
+      await tester.pumpWidgetBuilder(
+        ShouldDidDeployLoadedPage(
+          data: ShouldDidDeployToday.fromJson(mockedError),
+          onTryAgain: () {},
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await multiScreenGolden(
+        tester,
+        'Loaded_Page-Can_not_deploy',
+        devices: projectDevices,
+      );
     });
   });
 }

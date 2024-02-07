@@ -25,9 +25,13 @@ class ShouldDidDeployErrorPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.grey,
-                textStyle: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              child: const Text('Try Again'),
+              child: const Text(
+                'Try Again',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),

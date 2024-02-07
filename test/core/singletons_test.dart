@@ -7,7 +7,7 @@ import 'package:shouldideploy/should_did_deploy/data/repository/shouldideploy_re
 class MockSingletons extends Mock implements Singletons {}
 
 void main() {
-  test('Que é recomendado fazer o deploy com uma mensagem positiva.', () async {
+  test('[Unit] Repository registered ', () async {
     Singletons.init();
 
     final repositoryIsRegistered =

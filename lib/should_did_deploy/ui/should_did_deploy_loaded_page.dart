@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shouldideploy/should_did_deploy/data/model/should_did_deploy_model.dart';
 
-class ShouldDidDeploySuccessPage extends StatelessWidget {
+class ShouldDidDeployLoadedPage extends StatelessWidget {
   final ShouldDidDeployToday data;
   final VoidCallback? onTryAgain;
 
-  const ShouldDidDeploySuccessPage({
+  const ShouldDidDeployLoadedPage({
     required this.data,
     required this.onTryAgain,
     super.key,
@@ -57,9 +57,13 @@ class ShouldDidDeploySuccessPage extends StatelessWidget {
                   backgroundColor: data.shouldideploy
                       ? Colors.lightGreen[300]
                       : Colors.red[400],
-                  textStyle: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                child: const Text('Try Again'),
+                child: const Text(
+                  'Try Again',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
