@@ -26,7 +26,6 @@ linter:
     - avoid_positional_boolean_parameters
     - avoid_redundant_argument_values
     - avoid_renaming_method_parameters
-    - avoid_returning_null
     - avoid_returning_null_for_void
     - avoid_types_on_closure_parameters
     - avoid_unnecessary_containers
