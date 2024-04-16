@@ -28,4 +28,4 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.TOKEN_FOR_BUILD }}
-          message: "chore: update-goldens ${date}"
+          message: "chore: update-goldens"
