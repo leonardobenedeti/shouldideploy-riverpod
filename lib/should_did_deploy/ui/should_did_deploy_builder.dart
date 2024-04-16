@@ -12,16 +12,15 @@ class ShouldDidDeployBuilder extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final response = ref.watch(shouldDidDeployTodayProvider);
 
-    return switch (response) {
-      AsyncData(:final value) => ShouldDidDeployLoadedPage(
-          data: value,
-          onTryAgain: () => ref.refresh(shouldDidDeployTodayProvider.future),
-        ),
-      AsyncLoading() => const ShouldDidDeployLoadingPage(),
-      AsyncError() => ShouldDidDeployErrorPage(
-          onTryAgain: () => ref.refresh(shouldDidDeployTodayProvider.future),
-        ),
-      _ => const ShouldDidDeployLoadingPage(),
-    };
+    return response.when(
+      data: (data) => ShouldDidDeployLoadedPage(
+        data: data,
+        onTryAgain: () => ref.refresh(shouldDidDeployTodayProvider.future),
+      ),
+      error: (_, __) => ShouldDidDeployErrorPage(
+        onTryAgain: () => ref.refresh(shouldDidDeployTodayProvider.future),
+      ),
+      loading: () => const ShouldDidDeployLoadingPage(),
+    );
   }
 }
