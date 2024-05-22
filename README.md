@@ -17,6 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 alterações pra testar o pr validator
 - [x] draft to ready
-- [ ] Commit in ready to review PR
-- [ ] ready to draft
+- [x] Commit in ready to review PR
+- [x] ready to draft
 - [ ] Commit in draft to review PR
