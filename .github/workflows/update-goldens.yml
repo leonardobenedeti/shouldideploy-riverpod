@@ -2,17 +2,13 @@ name: Update Goldens
 
 on:
   workflow_dispatch:
+  workflow_call:
     inputs:
       flavor:
-        type: choice
-        description: Flavor
+        type: string
         required: true
-        default: production
-        options:
-          - production
-          - development
       version:
-        description: version to bump 1.2.3+123
+        type: string
         required: true
 
 jobs:
