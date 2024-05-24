@@ -19,7 +19,7 @@ on:
         description: Need run quality gate?
 
 jobs:
-  greet:
+  pump-version:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +31,7 @@ jobs:
         run: echo "Quality gate running"
 
   call-update-goldens-with-params:
+    needs: pump-version
     uses: ./.github/workflows/update-goldens.yml
     with:
       flavor: ${{ github.event.inputs.flavor }}
