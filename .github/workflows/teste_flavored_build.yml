@@ -33,4 +33,5 @@ jobs:
   call-update-goldens-with-params:
     uses: ./.github/workflows/update-goldens.yml
     with:
-      inputs: inherit
+      flavor: ${{ github.event.inputs.flavor }}
+      version: ${{ github.event.inputs.version }}
