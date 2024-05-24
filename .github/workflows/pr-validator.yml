@@ -14,6 +14,10 @@ jobs:
     if: ${{ !github.event.pull_request.draft }}
 
     steps:
+      - name: check-for-cc
+        id: check-for-cc
+        uses: agenthunt/conventional-commit-checker-action@v1.0.0
+
       - uses: actions/checkout@v3
 
       - name: Set up Flutter
