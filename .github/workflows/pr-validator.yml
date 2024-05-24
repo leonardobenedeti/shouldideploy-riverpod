@@ -22,6 +22,7 @@ jobs:
 
   analyze-and-test:
     runs-on: ubuntu-latest
+    needs: check-pr-title
     if: ${{ !github.event.pull_request.draft }}
 
     steps:
