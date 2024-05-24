@@ -21,7 +21,6 @@ on:
 jobs:
   pump-version:
     runs-on: ubuntu-latest
-
     steps:
       - name: Send greeting
         run: echo "${{ github.event.inputs.flavor }} ${{ github.event.inputs.version }}"
@@ -30,9 +29,29 @@ jobs:
         if: ${{ github.event.inputs.run-quality-gate }}
         run: echo "Quality gate running"
 
-  call-update-goldens-with-params:
+  build-android:
     needs: pump-version
-    uses: ./.github/workflows/update-goldens.yml
+    uses: ./.github/workflows/build-android.yml
     with:
       flavor: ${{ github.event.inputs.flavor }}
       version: ${{ github.event.inputs.version }}
+
+  build-ios:
+    needs: pump-version
+    uses: ./.github/workflows/build-ios.yml
+    with:
+      flavor: ${{ github.event.inputs.flavor }}
+      version: ${{ github.event.inputs.version }}
+
+  notify-on-error:
+    needs: [build-android, build-ios]
+    runs-on: ubuntu-latest
+    if: ${{ failure() && github.event_name == 'push'
+      && (needs.job1.result != 'failure' || (needs.job1.result == 'failure' && needs.job1.outputs.approved == 'true'))
+      && (needs.job2.result != 'failure' || (needs.job2.result == 'failure' && needs.job2.outputs.approved == 'true')) }}
+    steps:
+      - name: Notify android
+        run: echo "Enviar pro slack o resultado - needs.build-android.result"
+
+      - name: Notify ios
+        run: echo "Enviar pro slack o resultado - needs.build-ios.result"

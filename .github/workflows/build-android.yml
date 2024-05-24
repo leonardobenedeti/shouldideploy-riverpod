@@ -1,0 +1,26 @@
+name: Build Android
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      flavor:
+        type: string
+        required: true
+      version:
+        type: string
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      approved: ${{ steps.set-outputs.approved }}
+    steps:
+      - name: print inputs passing from first job
+        run: echo "${{ github.event.inputs.flavor }} ${{ github.event.inputs.version }}"
+
+      - name: Set outputs
+        id: set-outputs
+        run: |
+          echo "approved=false" >> $GITHUB_OUTPUT
