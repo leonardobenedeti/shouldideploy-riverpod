@@ -1,0 +1,31 @@
+name: Flavored Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      flavor:
+        type: choice
+        description: Flavor
+        required: true
+        default: production
+        options: 
+        - production
+        - development
+      version:
+        description: version to bump 1.2.3+123
+        required: true
+      run-quality-gate:
+        type: boolean
+        description: Need run quality gate?
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send greeting
+      run: echo "${{ github.event.inputs.flavor }} ${{ github.event.inputs.version }}"
+      
+    - name: Run Quality Gate
+      if: ${{ github.event.inputs.run-quality-gate }}
+      run: echo "Quality gate running"
