@@ -18,19 +18,17 @@ jobs:
     steps:
       - name: PR Title Verify
         uses: satvik-s/pr-title-check@1.3.0
+        continue-on-error: true
         with:
           pattern: '(fix|feat|chore|docs|style|refactor|perf|test|bump|ci|revert): (\[[A-Z]{3}-[0-9]{3,5}\]) (?:\w+\b\W*){2,8}$'
 
-  print-pr-title-example:
-    runs-on: ubuntu-latest
-    needs: check-pr-title
-    if: ${{ always() && needs.check-pr-title.result == 'failure' }}
-    steps:
       - name: Print PR Title example
         run: |
           echo "Please rename your PR following this pattern: "
           echo "type: [JIRA-ISSUE] Description with a least three words"
           echo "Something like this: chore: [ABC-123] Story description following jira issue"
+
+      - run: exit 1
 
   analyze-and-test:
     runs-on: ubuntu-latest
