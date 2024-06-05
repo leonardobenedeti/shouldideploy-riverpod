@@ -12,34 +12,41 @@ on:
       - ready_for_review
 
 jobs:
-  check-pr-title-cc:
+  check-pr-title:
     runs-on: ubuntu-latest
 
     steps:
       - name: Conventional PR Title Verify
+        id: cc-title
         uses: satvik-s/pr-title-check@1.3.0
         continue-on-error: true
         with:
           pattern: '(fix|feat|chore|docs|style|refactor|perf|test|bump|ci|revert): (\[[A-Z]{3}-[0-9]{3,5}\]) (?:\w+\b\W*){2,8}$'
 
-  check-pr-title-release:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Release PR Title Verify
+        id: release-title
         uses: satvik-s/pr-title-check@1.3.0
         continue-on-error: true
         with:
           pattern: "(Release/)"
 
-  can-continue:
-    runs-on: ubuntu-latest
-    needs: [check-pr-title-cc, check-pr-title-release]
-    if: always() && (needs.check-pr-title-cc.result == 'success' || needs.check-pr-title-release.result == 'success')
+      - name: Print Conventional PR Title example
+        if: steps.cc-title.outcome == 'failure'
+        run: |
+          echo "Please, rename your PR to follow this pattern: feat: [APP-123] At least three words "
+
+      - name: Print Conventional PR Title example
+        if: steps.release-title.outcome == 'failure'
+        run: |
+          echo "Please, rename your PR to follow this pattern: Release/1.2.3"
+
+      - name: Can Continue
+        if: steps.release-title.outcome == 'failure' || steps.cc-title.outcome == 'failure'
+        run: exit 1
 
   analyze-and-test:
     runs-on: ubuntu-latest
-    needs: can-continue
+    needs: check-pr-title
     if: ${{ !github.event.pull_request.draft }}
 
     steps:
