@@ -35,9 +35,7 @@ jobs:
   can-continue:
     runs-on: ubuntu-latest
     needs: [check-pr-title-cc, check-pr-title-release]
-    if: always() && (needs.check-pr-title-cc.result == 'failure' || needs.check-pr-title-release.result == 'failure')
-    steps:
-      - run: echo "Please, rename your PR"
+    if: always() && (needs.check-pr-title-cc.result == 'success' || needs.check-pr-title-release.result == 'success')
 
   analyze-and-test:
     runs-on: ubuntu-latest
