@@ -30,11 +30,6 @@ jobs:
         with:
           pattern: "(Release/)"
 
-      - name: Print Conventional PR Title example
-        if: steps.cc-title.outcome == 'failure'
-        run: |
-          echo "Please, rename your PR to follow this pattern: feat: [APP-123] At least three words "
-
       - name: Print allowed patterns
         if: steps.release-title.outcome == 'failure' && steps.cc-title.outcome == 'failure'
         run: |
