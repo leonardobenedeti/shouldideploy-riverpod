@@ -35,10 +35,12 @@ jobs:
         run: |
           echo "Please, rename your PR to follow this pattern: feat: [APP-123] At least three words "
 
-      - name: Print Release PR Title example
-        if: steps.release-title.outcome == 'failure'
+      - name: Print allowed patterns
+        if: steps.release-title.outcome == 'failure' && steps.cc-title.outcome == 'failure'
         run: |
-          echo "Please, rename your PR to follow this pattern: Release/1.2.3"
+          echo "Allowed patterns: "
+          echo "- Conventional PR Title: 'feat: [APP-123] at least three words'"
+          echo "- Release PR Title: 'Release/1.2.3'"
 
       - name: Can Continue
         if: steps.release-title.outcome == 'success' || steps.cc-title.outcome == 'success'
