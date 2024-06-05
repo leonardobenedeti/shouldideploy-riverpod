@@ -34,12 +34,12 @@ jobs:
         if: steps.release-title.outcome == 'failure' && steps.cc-title.outcome == 'failure'
         run: |
           echo "Allowed patterns: "
-          echo "- Conventional PR Title: 'feat: [APP-123] at least three words'"
+          echo "- Conventional PR Title: 'feat: [APP-123] at least two words'"
           echo "- Release PR Title: 'Release/1.2.3'"
 
       - name: Can Continue
-        if: steps.release-title.outcome == 'success' || steps.cc-title.outcome == 'success'
-        run: exit 0
+        if: steps.release-title.outcome == 'failure' && steps.cc-title.outcome == 'failure'
+        run: exit 1
 
   analyze-and-test:
     runs-on: ubuntu-latest
